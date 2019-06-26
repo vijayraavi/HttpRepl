@@ -60,8 +60,7 @@ namespace Microsoft.HttpRepl.IntegrationTests.Commands
 
             if (string.IsNullOrWhiteSpace(baseAddress))
             {
-                HttpClient httpClient = new HttpClient();
-                httpState = new HttpState(httpClient);
+                httpState = new HttpState();
             }
             else if (string.IsNullOrWhiteSpace(path))
             {

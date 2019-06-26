@@ -7,8 +7,7 @@ namespace Microsoft.HttpRepl.IntegrationTests.Commands
     {
         public static HttpState Create(string baseAddress, string path = null)
         {
-            HttpClient httpClient = new HttpClient();
-            HttpState httpState = new HttpState(httpClient);
+            HttpState httpState = new HttpState();
             httpState.BaseAddress = new Uri(baseAddress);
 
             if (path != null)

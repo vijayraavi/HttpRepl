@@ -69,7 +69,7 @@ namespace Microsoft.HttpRepl
 
         public Uri SwaggerEndpoint { get; set; }
 
-        public HttpState(HttpClient httpClient)
+        public HttpState(HttpClient httpClient = null)
         {
             Client = (httpClient == null)? new HttpClient() : httpClient;
             PathSections = new Stack<string>();

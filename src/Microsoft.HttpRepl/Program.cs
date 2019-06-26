@@ -17,8 +17,7 @@ namespace Microsoft.HttpRepl
     {
         static async Task Main(string[] args)
         {
-            HttpClient httpClient = new HttpClient();
-            var state = new HttpState(httpClient);
+            var state = new HttpState();
 
             if (Console.IsOutputRedirected)
             {
