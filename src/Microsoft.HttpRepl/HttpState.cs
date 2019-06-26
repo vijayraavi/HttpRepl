@@ -71,7 +71,7 @@ namespace Microsoft.HttpRepl
 
         public HttpState(HttpClient httpClient)
         {
-            Client = httpClient;
+            Client = (httpClient == null)? new HttpClient() : httpClient;
             PathSections = new Stack<string>();
             Preferences = new Dictionary<string, string>();
             DefaultPreferences = CreateDefaultPreferencs();
