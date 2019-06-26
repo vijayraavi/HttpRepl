@@ -9,6 +9,7 @@ using Microsoft.Repl.Commanding;
 using Microsoft.Repl.ConsoleHandling;
 using Microsoft.Repl.Parsing;
 using Microsoft.HttpRepl.Commands;
+using System.Net.Http;
 
 namespace Microsoft.HttpRepl
 {
@@ -16,7 +17,8 @@ namespace Microsoft.HttpRepl
     {
         static async Task Main(string[] args)
         {
-            var state = new HttpState();
+            HttpClient httpClient = new HttpClient();
+            var state = new HttpState(httpClient);
 
             if (Console.IsOutputRedirected)
             {

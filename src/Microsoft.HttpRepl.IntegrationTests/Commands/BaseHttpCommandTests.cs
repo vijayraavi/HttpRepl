@@ -1,3 +1,4 @@
+using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.HttpRepl.Commands;
@@ -59,7 +60,8 @@ namespace Microsoft.HttpRepl.IntegrationTests.Commands
 
             if (string.IsNullOrWhiteSpace(baseAddress))
             {
-                httpState = new HttpState();
+                HttpClient httpClient = new HttpClient();
+                httpState = new HttpState(httpClient);
             }
             else if (string.IsNullOrWhiteSpace(path))
             {

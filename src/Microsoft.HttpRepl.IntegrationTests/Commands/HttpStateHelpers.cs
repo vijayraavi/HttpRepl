@@ -1,4 +1,5 @@
 using System;
+using System.Net.Http;
 
 namespace Microsoft.HttpRepl.IntegrationTests.Commands
 {
@@ -6,7 +7,8 @@ namespace Microsoft.HttpRepl.IntegrationTests.Commands
     {
         public static HttpState Create(string baseAddress, string path = null)
         {
-            HttpState httpState = new HttpState();
+            HttpClient httpClient = new HttpClient();
+            HttpState httpState = new HttpState(httpClient);
             httpState.BaseAddress = new Uri(baseAddress);
 
             if (path != null)

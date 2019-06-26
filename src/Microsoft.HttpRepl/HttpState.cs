@@ -69,9 +69,9 @@ namespace Microsoft.HttpRepl
 
         public Uri SwaggerEndpoint { get; set; }
 
-        public HttpState()
+        public HttpState(HttpClient httpClient)
         {
-            Client = new HttpClient();
+            Client = httpClient;
             PathSections = new Stack<string>();
             Preferences = new Dictionary<string, string>();
             DefaultPreferences = CreateDefaultPreferencs();
