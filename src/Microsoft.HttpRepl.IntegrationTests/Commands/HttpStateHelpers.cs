@@ -1,5 +1,4 @@
 using System;
-using System.Net.Http;
 
 namespace Microsoft.HttpRepl.IntegrationTests.Commands
 {
