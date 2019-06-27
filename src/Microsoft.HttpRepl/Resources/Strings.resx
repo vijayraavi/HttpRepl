@@ -121,4 +121,10 @@
     <value>'set base {url}' must be called before issuing requests to a relative path</value>
     <comment>Error shown in console when issuing an HTTP command without first setting the base url</comment>
   </data>
+  <data name="SetSwaggerCommand_Description" xml:space="preserve">
+    <value>Sets the swagger document to use for information about the current server</value>
+  </data>
+  <data name="SetSwaggerCommand_SpecifySwaggerDocument" xml:space="preserve">
+    <value>Must specify a swagger document</value>
+  </data>
 </root>
