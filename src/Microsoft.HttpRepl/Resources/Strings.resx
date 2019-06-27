@@ -121,4 +121,10 @@
     <value>'set base {url}' must be called before issuing requests to a relative path</value>
     <comment>Error shown in console when issuing an HTTP command without first setting the base url</comment>
   </data>
+  <data name="UICommand_Help" xml:space="preserve">
+    <value>ui - Launches the Swagger UI page (if available) in the default browser</value>
+  </data>
+  <data name="UICommand_MustBeConnectedToServerError" xml:space="preserve">
+    <value>Must be connected to a server to launch Swagger UI</value>
+  </data>
 </root>

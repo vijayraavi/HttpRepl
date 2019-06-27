@@ -68,5 +68,23 @@ namespace Microsoft.HttpRepl.Resources {
                 return ResourceManager.GetString("Error_NoBasePath", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ui - Launches the Swagger UI page (if available) in the default browser.
+        /// </summary>
+        internal static string UICommand_Help {
+            get {
+                return ResourceManager.GetString("UICommand_Help", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Must be connected to a server to launch Swagger UI.
+        /// </summary>
+        internal static string UICommand_MustBeConnectedToServerError {
+            get {
+                return ResourceManager.GetString("UICommand_MustBeConnectedToServerError", resourceCulture);
+            }
+        }
     }
 }

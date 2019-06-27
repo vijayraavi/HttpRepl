@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.HttpRepl.Resources;
 using Microsoft.Repl;
 using Microsoft.Repl.Commanding;
 using Microsoft.Repl.ConsoleHandling;
@@ -29,7 +30,7 @@ namespace Microsoft.HttpRepl.Commands
         {
             if (programState.BaseAddress == null)
             {
-                shellState.ConsoleManager.Error.WriteLine("Must be connected to a server to launch Swagger UI".SetColor(programState.ErrorColor));
+                shellState.ConsoleManager.Error.WriteLine(Strings.UICommand_MustBeConnectedToServerError.SetColor(programState.ErrorColor));
                 return Task.CompletedTask;
             }
 
@@ -56,7 +57,7 @@ namespace Microsoft.HttpRepl.Commands
         {
             if (parseResult.Sections.Count == 1 && string.Equals(parseResult.Sections[0], Name))
             {
-                return "ui - Launches the Swagger UI page (if available) in the default browser";
+                return Strings.UICommand_Help;
             }
 
             return null;
@@ -64,7 +65,7 @@ namespace Microsoft.HttpRepl.Commands
 
         public string GetHelpSummary(IShellState shellState, HttpState programState)
         {
-            return "ui - Launches the Swagger UI page (if available) in the default browser";
+            return Strings.UICommand_Help;
         }
 
         public IEnumerable<string> Suggest(IShellState shellState, HttpState programState, ICoreParseResult parseResult)
