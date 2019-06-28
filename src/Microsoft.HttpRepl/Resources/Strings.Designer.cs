@@ -79,6 +79,15 @@ namespace Microsoft.HttpRepl.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Must specify a server.
+        /// </summary>
+        internal static string SetBaseCommand_MustSpecifyServerError {
+            get {
+                return ResourceManager.GetString("SetBaseCommand_MustSpecifyServerError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Usage: set base [uri]
         ///
         ///Sets the base address to direct requests to..

@@ -124,6 +124,9 @@
   <data name="SetBaseCommand_Description" xml:space="preserve">
     <value>Sets the base address to direct requests to.</value>
   </data>
+  <data name="SetBaseCommand_MustSpecifyServerError" xml:space="preserve">
+    <value>Must specify a server</value>
+  </data>
   <data name="SetBaseCommand_Usage" xml:space="preserve">
     <value>Usage: set base [uri]
 

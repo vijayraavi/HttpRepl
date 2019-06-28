@@ -1,15 +1,11 @@
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.HttpRepl.Commands;
 using Microsoft.HttpRepl.IntegrationTests.Mocks;
 using Microsoft.HttpRepl.Resources;
-using Microsoft.Repl;
-using Microsoft.Repl.ConsoleHandling;
 using Microsoft.Repl.Parsing;
-using Moq;
 using Xunit;
 
 namespace Microsoft.HttpRepl.IntegrationTests.Commands
@@ -177,9 +173,8 @@ namespace Microsoft.HttpRepl.IntegrationTests.Commands
     }
   }
 }";
-            MockedShellState shellState = new MockedShellState();
             string parseResultSections = "set swagger http://localhost:5050/somePath";
-            IDirectoryStructure directoryStructure = await GetDirectoryStructure(shellState, response, parseResultSections).ConfigureAwait(false);
+            IDirectoryStructure directoryStructure = await GetDirectoryStructure(response, parseResultSections, CancellationToken.None).ConfigureAwait(false);
             List<string> directoryNames = directoryStructure.DirectoryNames.ToList();
             string expectedDirectoryName = "api";
 
@@ -234,9 +229,8 @@ namespace Microsoft.HttpRepl.IntegrationTests.Commands
     }
   }
 }";
-            MockedShellState shellState = new MockedShellState();
             string parseResultSections = "set swagger http://localhost:5050/somePath";
-            IDirectoryStructure directoryStructure = await GetDirectoryStructure(shellState, response, parseResultSections).ConfigureAwait(false);
+            IDirectoryStructure directoryStructure = await GetDirectoryStructure(response, parseResultSections, CancellationToken.None).ConfigureAwait(false);
             List<string> directoryNames = directoryStructure.DirectoryNames.ToList();
             string expectedDirectoryName = "api";
 
@@ -249,21 +243,6 @@ namespace Microsoft.HttpRepl.IntegrationTests.Commands
             Assert.Equal(2, childDirectoryNames.Count);
             Assert.Equal("Employees", childDirectoryNames.First());
             Assert.Equal("Values", childDirectoryNames.ElementAt(1));
-        }
-
-        private async Task<IDirectoryStructure> GetDirectoryStructure(MockedShellState shellState, string response, string parseResultSections)
-        {
-            HttpResponseMessage responseMessage = new HttpResponseMessage();
-            responseMessage.Content = new MockHttpContent(response);
-            MockHttpMessageHandler messageHandler = new MockHttpMessageHandler(responseMessage);
-            HttpClient client = new HttpClient(messageHandler);
-            HttpState httpState = new HttpState(client);
-            ICoreParseResult parseResult = CoreParseResultHelper.Create(parseResultSections);
-            SetSwaggerCommand setSwaggerCommand = new SetSwaggerCommand();
-
-            await setSwaggerCommand.ExecuteAsync(shellState, httpState, parseResult, CancellationToken.None);
-
-            return httpState.SwaggerStructure;
         }
     }
 }

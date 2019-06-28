@@ -37,7 +37,7 @@ namespace Microsoft.HttpRepl.Commands
             }
             else if (parseResult.Sections.Count != 3 || string.IsNullOrEmpty(parseResult.Sections[2]) || !Uri.TryCreate(EnsureTrailingSlash(parseResult.Sections[2]), UriKind.Absolute, out Uri serverUri))
             {
-                shellState.ConsoleManager.Error.WriteLine("Must specify a server".SetColor(state.ErrorColor));
+                shellState.ConsoleManager.Error.WriteLine(Strings.SetBaseCommand_MustSpecifyServerError.SetColor(state.ErrorColor));
             }
             else
             {

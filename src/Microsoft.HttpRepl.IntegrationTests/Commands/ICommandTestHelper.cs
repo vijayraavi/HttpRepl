@@ -1,8 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.HttpRepl.Commands;
 using Microsoft.HttpRepl.IntegrationTests.Mocks;
 using Microsoft.Repl;
 using Microsoft.Repl.Commanding;
@@ -70,6 +70,22 @@ namespace Microsoft.HttpRepl.IntegrationTests.Commands
             Mock<IWritable> error = Mock.Get(shellState.ConsoleManager.Error);
 
             error.Verify(s => s.WriteLine(It.IsAny<string>()), Times.Once);
+        }
+
+        protected async Task<IDirectoryStructure> GetDirectoryStructure(string response, string parseResultSections, CancellationToken cancellationToken, Uri baseAddress = null)
+        {
+            MockedShellState shellState = new MockedShellState();
+            HttpResponseMessage responseMessage = new HttpResponseMessage();
+            responseMessage.Content = new MockHttpContent(response);
+            MockHttpMessageHandler messageHandler = new MockHttpMessageHandler(responseMessage);
+            HttpClient client = new HttpClient(messageHandler);
+            HttpState httpState = new HttpState(client);
+            httpState.BaseAddress = baseAddress;
+            ICoreParseResult parseResult = CoreParseResultHelper.Create(parseResultSections);
+
+            await _command.ExecuteAsync(shellState, httpState, parseResult, cancellationToken);
+
+            return httpState.SwaggerStructure;
         }
     }
 }
