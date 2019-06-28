@@ -70,6 +70,26 @@ namespace Microsoft.HttpRepl.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sets the base address to direct requests to..
+        /// </summary>
+        internal static string SetBaseCommand_Description {
+            get {
+                return ResourceManager.GetString("SetBaseCommand_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Usage: set base [uri]
+        ///
+        ///Sets the base address to direct requests to..
+        /// </summary>
+        internal static string SetBaseCommand_Usage {
+            get {
+                return ResourceManager.GetString("SetBaseCommand_Usage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to set header {name} [value] - Sets or clears a header.
         /// </summary>
         internal static string SetHeaderCommand_Description {
@@ -83,9 +103,9 @@ namespace Microsoft.HttpRepl.Resources {
         ///
         ///Sets or clears a header. When [value] is empty the header is cleared..
         /// </summary>
-        internal static string SetHeaderCommand_HelpDetails {
+        internal static string SetHeaderCommand_Usage {
             get {
-                return ResourceManager.GetString("SetHeaderCommand_HelpDetails", resourceCulture);
+                return ResourceManager.GetString("SetHeaderCommand_Usage", resourceCulture);
             }
         }
         

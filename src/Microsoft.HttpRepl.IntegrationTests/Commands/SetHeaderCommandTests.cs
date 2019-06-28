@@ -44,7 +44,7 @@ namespace Microsoft.HttpRepl.IntegrationTests.Commands
         }
 
         [Fact]
-        public void CanHandle_WithValidInput_ReturnsNull()
+        public void CanHandle_WithValidInput_ReturnsTrue()
         {
             bool? result = CanHandle(parseResultSections: "set header name");
 
@@ -65,7 +65,7 @@ namespace Microsoft.HttpRepl.IntegrationTests.Commands
             string parseResultSections = "set header";
             string result = GetHelpDetails(parseResultSections);
 
-            Assert.Equal(Strings.SetHeaderCommand_HelpDetails, result);
+            Assert.Equal(Strings.SetHeaderCommand_Usage, result);
         }
 
         [Fact]

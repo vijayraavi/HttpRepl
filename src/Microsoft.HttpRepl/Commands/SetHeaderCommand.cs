@@ -44,7 +44,7 @@ namespace Microsoft.HttpRepl.Commands
 
         public string GetHelpDetails(IShellState shellState, HttpState programState, ICoreParseResult parseResult)
         {
-            return Strings.SetHeaderCommand_HelpDetails;
+            return Strings.SetHeaderCommand_Usage;
         }
 
         public string GetHelpSummary(IShellState shellState, HttpState programState)

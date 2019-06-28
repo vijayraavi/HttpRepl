@@ -5,9 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Sockets;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.HttpRepl.Resources;
 using Microsoft.Repl;
 using Microsoft.Repl.Commanding;
 using Microsoft.Repl.ConsoleHandling;
@@ -20,7 +20,7 @@ namespace Microsoft.HttpRepl.Commands
         private const string Name = "set";
         private const string SubCommand = "base";
 
-        public string Description => "Sets the base address to direct requests to.";
+        public string Description => Strings.SetBaseCommand_Description;
 
         public bool? CanHandle(IShellState shellState, HttpState programState, ICoreParseResult parseResult)
         {
@@ -96,12 +96,7 @@ namespace Microsoft.HttpRepl.Commands
         {
             if (parseResult.Sections.Count > 1 && string.Equals(parseResult.Sections[0], Name, StringComparison.OrdinalIgnoreCase) && string.Equals(parseResult.Sections[1], SubCommand, StringComparison.OrdinalIgnoreCase))
             {
-                var helpText = new StringBuilder();
-                helpText.Append("Usage: ".Bold());
-                helpText.AppendLine($"set base [uri]");
-                helpText.AppendLine();
-                helpText.AppendLine(Description);
-                return helpText.ToString();
+                return Strings.SetBaseCommand_Usage;
             }
 
             return null;

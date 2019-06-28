@@ -121,10 +121,18 @@
     <value>'set base {url}' must be called before issuing requests to a relative path</value>
     <comment>Error shown in console when issuing an HTTP command without first setting the base url</comment>
   </data>
+  <data name="SetBaseCommand_Description" xml:space="preserve">
+    <value>Sets the base address to direct requests to.</value>
+  </data>
+  <data name="SetBaseCommand_Usage" xml:space="preserve">
+    <value>Usage: set base [uri]
+
+Sets the base address to direct requests to.</value>
+  </data>
   <data name="SetHeaderCommand_Description" xml:space="preserve">
     <value>set header {name} [value] - Sets or clears a header</value>
   </data>
-  <data name="SetHeaderCommand_HelpDetails" xml:space="preserve">
+  <data name="SetHeaderCommand_Usage" xml:space="preserve">
     <value>Usage: set header {name} [value]
 
 Sets or clears a header. When [value] is empty the header is cleared.</value>
