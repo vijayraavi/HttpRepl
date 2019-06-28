@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.HttpRepl.Commands;
 using Microsoft.HttpRepl.IntegrationTests.Mocks;
 using Microsoft.Repl;
 using Microsoft.Repl.Commanding;
@@ -55,9 +57,9 @@ namespace Microsoft.HttpRepl.IntegrationTests.Commands
             await _command.ExecuteAsync(shellState, httpState, parseResult, CancellationToken.None);
         }
 
-        protected IEnumerable<string> GetSuggestions(string parseResultSections)
+        protected IEnumerable<string> GetSuggestions(string parseResultSections, int caretPosition = 0)
         {
-            ICoreParseResult parseResult = CoreParseResultHelper.Create(parseResultSections);
+            ICoreParseResult parseResult = CoreParseResultHelper.Create(parseResultSections, caretPosition);
             MockedShellState shellState = new MockedShellState();
             HttpState httpState = new HttpState(null);
             return _command.Suggest(shellState, httpState, parseResult);

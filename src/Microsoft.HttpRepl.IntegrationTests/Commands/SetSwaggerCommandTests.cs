@@ -100,7 +100,7 @@ namespace Microsoft.HttpRepl.IntegrationTests.Commands
         [Fact]
         public void Suggest_WithSelectedSectionAtOne_ReturnsSubCommand()
         {
-            IEnumerable<string> suggestions = GetSuggestions(parseResultSections: "set swagger");
+            IEnumerable<string> suggestions = GetSuggestions(parseResultSections: "set swagger", 11);
             string expected = "swagger";
 
             Assert.Single(suggestions);

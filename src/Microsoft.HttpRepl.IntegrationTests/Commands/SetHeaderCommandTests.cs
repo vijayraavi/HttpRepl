@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -105,6 +107,109 @@ namespace Microsoft.HttpRepl.IntegrationTests.Commands
             Assert.Equal("name", secondHeader.Key);
             Assert.Equal("value1", secondHeader.Value.First());
             Assert.Equal("value2", secondHeader.Value.ElementAt(1));
+        }
+
+        [Fact]
+        public void Suggest_WithNoParseResultSections_ReturnsName()
+        {
+            MockedShellState shellState = new MockedShellState();
+            ICoreParseResult parseResult = CoreParseResultHelper.Create(string.Empty);
+            HttpState httpState = new HttpState(null);
+            SetHeaderCommand setHeaderCommand = new SetHeaderCommand();
+
+            IEnumerable<string> suggestions = setHeaderCommand.Suggest(shellState, httpState, parseResult);
+
+            Assert.Single(suggestions);
+            Assert.Equal("set", suggestions.First());
+        }
+
+        [Fact]
+        public void Suggest_WithOneParseResultSectionAndSelectedSectionGreaterAtZero_ReturnsName()
+        {
+            MockedShellState shellState = new MockedShellState();
+            ICoreParseResult parseResult = CoreParseResultHelper.Create("set", 0);
+            HttpState httpState = new HttpState(null);
+            SetHeaderCommand setHeaderCommand = new SetHeaderCommand();
+
+            IEnumerable<string> suggestions = setHeaderCommand.Suggest(shellState, httpState, parseResult);
+
+            Assert.Single(suggestions);
+            Assert.Equal("set", suggestions.First());
+        }
+
+        [Fact]
+        public void Suggest_WithOneParseResultSectionAndSelectedSectionGreaterThanZero_ReturnsName()
+        {
+            MockedShellState shellState = new MockedShellState();
+            ICoreParseResult parseResult = CoreParseResultHelper.Create("set", 3);
+            HttpState httpState = new HttpState(null);
+            SetHeaderCommand setHeaderCommand = new SetHeaderCommand();
+
+            IEnumerable<string> suggestions = setHeaderCommand.Suggest(shellState, httpState, parseResult);
+
+            Assert.Single(suggestions);
+            Assert.Equal("set", suggestions.First());
+        }
+
+        [Fact]
+        public void Suggest_WithMoreThanOneParseResultSectionAndSelectedSectionGreaterThanZero_ReturnsName()
+        {
+            MockedShellState shellState = new MockedShellState();
+            ICoreParseResult parseResult = CoreParseResultHelper.Create("set header", 10);
+            HttpState httpState = new HttpState(null);
+            SetHeaderCommand setHeaderCommand = new SetHeaderCommand();
+
+            IEnumerable<string> suggestions = setHeaderCommand.Suggest(shellState, httpState, parseResult);
+
+            Assert.Single(suggestions);
+            Assert.Equal("header", suggestions.First());
+        }
+
+        [Fact]
+        public void Suggest_WithMoreThanTwoParseResultSectionsAndSelectedSectionGreaterThanTwo_ReturnsHeaderCompletion()
+        {
+            MockedShellState shellState = new MockedShellState();
+            ICoreParseResult parseResult = CoreParseResultHelper.Create("set header O", 12);
+            HttpState httpState = new HttpState(null);
+            SetHeaderCommand setHeaderCommand = new SetHeaderCommand();
+
+            IEnumerable<string> suggestions = setHeaderCommand.Suggest(shellState, httpState, parseResult);
+
+            Assert.Single(suggestions);
+            Assert.Equal("Origin", suggestions.First());
+        }
+
+        [Fact]
+        public void Suggest_WithMoreThanThreeParseResultSectionsAndSelectedSectionAtThree_ReturnsValueCompletion()
+        {
+            MockedShellState shellState = new MockedShellState();
+            ICoreParseResult parseResult = CoreParseResultHelper.Create("set header CONTENT-TYPE t", 25);
+            HttpState httpState = new HttpState(null);
+            IDirectoryStructure directoryStructure = new MockDirectoryStructure("testMethod", "testContentType", "testBody");
+            httpState.SwaggerStructure = directoryStructure;
+            httpState.BaseAddress = new Uri("http://localhost:5050/");
+            SetHeaderCommand setHeaderCommand = new SetHeaderCommand();
+
+            List<string> suggestions = setHeaderCommand.Suggest(shellState, httpState, parseResult).ToList();
+
+            Assert.Single(suggestions);
+            Assert.Equal("testContentType", suggestions.First());
+        }
+
+        [Fact]
+        public void Suggest_WithMoreThanThreeParseResultSectionsAndNoMatchingCompletions_ReturnsNothing()
+        {
+            MockedShellState shellState = new MockedShellState();
+            ICoreParseResult parseResult = CoreParseResultHelper.Create("set header CONTENT-TYPE z", 25);
+            HttpState httpState = new HttpState(null);
+            IDirectoryStructure directoryStructure = new MockDirectoryStructure("testMethod", "testContentType", "testBody");
+            httpState.SwaggerStructure = directoryStructure;
+            httpState.BaseAddress = new Uri("http://localhost:5050/");
+            SetHeaderCommand setHeaderCommand = new SetHeaderCommand();
+
+            IEnumerable<string> suggestions = setHeaderCommand.Suggest(shellState, httpState, parseResult);
+
+            Assert.Empty(suggestions);
         }
     }
 }
