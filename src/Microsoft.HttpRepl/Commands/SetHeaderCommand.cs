@@ -4,13 +4,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.HttpRepl.Resources;
 using Microsoft.HttpRepl.Suggestions;
 using Microsoft.Repl;
 using Microsoft.Repl.Commanding;
-using Microsoft.Repl.ConsoleHandling;
 using Microsoft.Repl.Parsing;
 
 namespace Microsoft.HttpRepl.Commands
@@ -20,7 +19,7 @@ namespace Microsoft.HttpRepl.Commands
         private static readonly string Name = "set";
         private static readonly string SubCommand = "header";
 
-        public string Description => "set header {name} [value] - Sets or clears a header";
+        public string Description => Strings.SetHeaderCommand_Description;
 
         public bool? CanHandle(IShellState shellState, HttpState programState, ICoreParseResult parseResult)
         {
@@ -45,12 +44,7 @@ namespace Microsoft.HttpRepl.Commands
 
         public string GetHelpDetails(IShellState shellState, HttpState programState, ICoreParseResult parseResult)
         {
-            var helpText = new StringBuilder();
-            helpText.Append("Usage: ".Bold());
-            helpText.AppendLine("set header {name} [value]");
-            helpText.AppendLine();
-            helpText.AppendLine("Sets or clears a header. When [value] is empty the header is cleared.");
-            return Description;
+            return Strings.SetHeaderCommand_HelpDetails;
         }
 
         public string GetHelpSummary(IShellState shellState, HttpState programState)

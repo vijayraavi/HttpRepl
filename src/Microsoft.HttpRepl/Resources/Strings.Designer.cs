@@ -70,6 +70,26 @@ namespace Microsoft.HttpRepl.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to set header {name} [value] - Sets or clears a header.
+        /// </summary>
+        internal static string SetHeaderCommand_Description {
+            get {
+                return ResourceManager.GetString("SetHeaderCommand_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Usage: set header {name} [value]
+        ///
+        ///Sets or clears a header. When [value] is empty the header is cleared..
+        /// </summary>
+        internal static string SetHeaderCommand_HelpDetails {
+            get {
+                return ResourceManager.GetString("SetHeaderCommand_HelpDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sets the swagger document to use for information about the current server.
         /// </summary>
         internal static string SetSwaggerCommand_Description {
