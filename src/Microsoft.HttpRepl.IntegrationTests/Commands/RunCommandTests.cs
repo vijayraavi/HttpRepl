@@ -2,9 +2,9 @@ using Microsoft.HttpRepl.Commands;
 
 namespace Microsoft.HttpRepl.IntegrationTests.Commands
 {
-    public class HelpCommandTests : ICommandTestHelper<HelpCommand>
+    public class RunCommandTests : ICommandTestHelper<RunCommand>
     {
-        public HelpCommandTests(): base(new HelpCommand())
+        public RunCommandTests(): base(new RunCommand())
         {
         }
     }
