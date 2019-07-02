@@ -70,6 +70,27 @@ namespace Microsoft.HttpRepl.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to run {path to script} - Runs a script.
+        /// </summary>
+        internal static string RunCommand_Description {
+            get {
+                return ResourceManager.GetString("RunCommand_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Usage: run {path to script}
+        ///
+        ///Runs the specified script.
+        ///A script is a text file containing one CLI command per line. Each line will be run as if it was typed into the CLI..
+        /// </summary>
+        internal static string RunCommand_Usage {
+            get {
+                return ResourceManager.GetString("RunCommand_Usage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sets the base address to direct requests to..
         /// </summary>
         internal static string SetBaseCommand_Description {

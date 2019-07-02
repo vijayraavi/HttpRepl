@@ -121,6 +121,15 @@
     <value>'set base {url}' must be called before issuing requests to a relative path</value>
     <comment>Error shown in console when issuing an HTTP command without first setting the base url</comment>
   </data>
+  <data name="RunCommand_Description" xml:space="preserve">
+    <value>run {path to script} - Runs a script</value>
+  </data>
+  <data name="RunCommand_Usage" xml:space="preserve">
+    <value>Usage: run {path to script}
+
+Runs the specified script.
+A script is a text file containing one CLI command per line. Each line will be run as if it was typed into the CLI.</value>
+  </data>
   <data name="SetBaseCommand_Description" xml:space="preserve">
     <value>Sets the base address to direct requests to.</value>
   </data>

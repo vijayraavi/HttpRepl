@@ -27,7 +27,7 @@ namespace Microsoft.HttpRepl.IntegrationTests.Mocks
 
         public IConsoleManager ConsoleManager { get; }
 
-        public ICommandDispatcher CommandDispatcher { get; } = new Mock<ICommandDispatcher>().Object;
+        public ICommandDispatcher CommandDispatcher { get; } = DefaultCommandDispatcher.Create(x => { }, new object());
 
         public ISuggestionManager SuggestionManager { get; } = new Mock<ISuggestionManager>().Object;
 

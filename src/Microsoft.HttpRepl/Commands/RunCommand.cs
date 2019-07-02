@@ -4,12 +4,11 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.HttpRepl.Resources;
 using Microsoft.Repl;
 using Microsoft.Repl.Commanding;
-using Microsoft.Repl.ConsoleHandling;
 using Microsoft.Repl.Parsing;
 using Microsoft.Repl.Scripting;
 using Microsoft.Repl.Suggestions;
@@ -50,13 +49,7 @@ namespace Microsoft.HttpRepl.Commands
         {
             if (parseResult.Sections.Count > 0 && string.Equals(parseResult.Sections[0], Name, StringComparison.OrdinalIgnoreCase))
             {
-                var helpText = new StringBuilder();
-                helpText.Append("Usage: ".Bold());
-                helpText.AppendLine("run {path to script}");
-                helpText.AppendLine();
-                helpText.AppendLine("Runs the specified script.");
-                helpText.AppendLine("A script is a text file containing one CLI command per line. Each line will be run as if it was typed into the CLI.");
-                return helpText.ToString();
+                return Strings.RunCommand_Usage;
             }
 
             return null;
@@ -64,7 +57,7 @@ namespace Microsoft.HttpRepl.Commands
 
         public string GetHelpSummary(IShellState shellState, HttpState programState)
         {
-            return "run {path to script} - Runs a script";
+            return Strings.RunCommand_Description;
         }
 
         public IEnumerable<string> Suggest(IShellState shellState, HttpState programState, ICoreParseResult parseResult)
