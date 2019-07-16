@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
@@ -15,12 +15,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Microsoft.HttpRepl\Microsoft.HttpRepl.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Commands\" />
-    <Folder Include="Mocks\" />
-    <Folder Include="SampleApi\Controllers\" />
   </ItemGroup>
 
 </Project>
